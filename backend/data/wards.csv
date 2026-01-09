@@ -1,0 +1,61 @@
+ward_id,ward_name,zone,latitude,longitude
+W01,Connaught Place,Central,28.6315,77.2167
+W02,Shahdara,East,28.6980,77.2885
+W03,Karol Bagh,Central,28.6520,77.1910
+W04,Mayur Vihar,East,28.6125,77.2915
+W05,Dwarka,South West,28.5921,77.0460
+W06,Saket,South,28.5244,77.2139
+W07,Rohini,North West,28.7041,77.1025
+W08,Janakpuri,West,28.6219,77.0878
+W09,Lajpat Nagar,South,28.5672,77.2390
+W10,Hauz Khas,South,28.5494,77.2001
+W11,Greater Kailash,South,28.5418,77.2389
+W12,Vasant Vihar,South West,28.5603,77.1627
+W13,Vasant Kunj,South West,28.5293,77.1519
+W14,Mehrauli,South,28.5186,77.1843
+W15,Chhatarpur,South,28.5023,77.1818
+W16,Malviya Nagar,South,28.5350,77.2100
+W17,Kalkaji,South East,28.5373,77.2613
+W18,Okhla,South East,28.5630,77.2790
+W19,Sarita Vihar,South East,28.5273,77.3002
+W20,Nehru Place,South East,28.5492,77.2526
+W21,Defence Colony,South East,28.5732,77.2325
+W22,Lodhi Road,Central,28.5902,77.2259
+W23,Jangpura,South East,28.5833,77.2439
+W24,Nizamuddin,South East,28.5880,77.2470
+W25,ITO,Central,28.6288,77.2415
+W26,Daryaganj,Central,28.6433,77.2427
+W27,Chandni Chowk,North,28.6562,77.2300
+W28,Kashmere Gate,North,28.6672,77.2307
+W29,Civil Lines,North,28.6816,77.2227
+W30,Model Town,North,28.7029,77.1937
+W31,Azadpur,North,28.7063,77.1755
+W32,Shalimar Bagh,North West,28.7167,77.1528
+W33,Pitampura,North West,28.6990,77.1384
+W34,Punjabi Bagh,West,28.6692,77.1303
+W35,Rajouri Garden,West,28.6493,77.1207
+W36,Tilak Nagar,West,28.6366,77.0965
+W37,Uttam Nagar,West,28.6225,77.0560
+W38,Najafgarh,South West,28.6090,76.9872
+W39,Palam,South West,28.5893,77.0850
+W40,Delhi Cantonment,South West,28.5961,77.1360
+W41,Naraina,West,28.6337,77.1389
+W42,Patel Nagar,Central,28.6533,77.1670
+W43,Kirti Nagar,West,28.6504,77.1430
+W44,Moti Nagar,West,28.6575,77.1431
+W45,Paschim Vihar,West,28.6675,77.0981
+W46,Nangloi,West,28.6826,77.0628
+W47,Mundka,West,28.6817,77.0270
+W48,Bawana,North West,28.8020,77.0427
+W49,Narela,North West,28.8540,77.0910
+W50,Alipur,North,28.7997,77.1332
+W51,Burari,North,28.7533,77.1969
+W52,Mukherjee Nagar,North,28.7144,77.2148
+W53,Timarpur,North,28.7032,77.2210
+W54,Seelampur,North East,28.6699,77.2720
+W55,Gokulpuri,North East,28.7020,77.2870
+W56,Dilshad Garden,East,28.6853,77.3228
+W57,Vivek Vihar,East,28.6693,77.3160
+W58,Preet Vihar,East,28.6417,77.2952
+W59,Laxmi Nagar,East,28.6332,77.2796
+W60,Gandhi Nagar,East,28.6582,77.2693
