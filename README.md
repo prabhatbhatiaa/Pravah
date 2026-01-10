@@ -2,12 +2,11 @@
 
 > Data Driven Real-Time Delhi Flood Risk Monitoring & Management System
 
-<img width="1302" height="624" alt="image" src="https://github.com/user-attachments/assets/738cb709-9cd5-4149-bccf-aa802bbf7a12" />
-
+<img width="1349" height="626" alt="image" src="https://github.com/user-attachments/assets/f6bb9d98-b52b-40a3-8a38-c3e05182dddc" />
 **Live Demo:** https://pravah-proj.vercel.app/
 
-A comprehensive, data-driven dashboard designed to help city administrators monitor, predict, and manage urban flood risks in real-time. 
 
+A comprehensive, data-driven dashboard designed to help city administrators monitor, predict, and manage urban flood risks in real-time. 
 It integrates rainfall data, drainage capacity, and citizen complaints to generate dynamic risk scores for 250 municipal wards in Delhi.
 
 ## ✨ Features
