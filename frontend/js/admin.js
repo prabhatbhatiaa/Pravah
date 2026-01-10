@@ -1,7 +1,7 @@
     // =====================
     // CONFIGURATION
     // =====================
-    const API_BASE = "https://pravah-br0g.onrender.com/";
+    const API_BASE = "https://pravah-br0g.onrender.com";
     const DELHI_BOUNDS = [[28.40, 76.80], [28.90, 77.35]];
     const DELHI_CENTER = [28.6139, 77.2090];
 
@@ -455,3 +455,4 @@
       showToast('Logged Out', 'You have been logged out successfully', 'success');
       setTimeout(() => window.location.href = 'login.html', 1000);
     }
+
