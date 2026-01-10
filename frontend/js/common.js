@@ -2,11 +2,9 @@
  * COMMON CONFIGURATION
  */
 
-// API Base URL - Ensure your Python backend is running here
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://pravah-br0g.onrender.com";
 
 const Utils = {
-    // Matches the backend's capitalized risk levels to your CSS colors
     getRiskColor: (level) => {
         if (!level) return '#94a3b8';
         const norm = level.toLowerCase();
@@ -53,4 +51,5 @@ const Utils = {
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }
+
 };
