@@ -1,7 +1,0 @@
-ward_id,severity,description,timestamp
-W01,High,Water entering shops in inner circle,2024-01-15T10:00:00
-W01,Medium,Road blocked near metro station,2024-01-15T10:30:00
-W02,High,Sewer overflow in residential area,2024-01-15T09:15:00
-W03,Medium,Slow drainage on main road,2024-01-15T11:00:00
-W05,High,test,2026-01-04T07:56:01.753Z
-W05,Medium,DIKKAT AARI HAI,2026-01-04T09:15:19.407Z
