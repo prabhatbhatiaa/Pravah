@@ -1,0 +1,136 @@
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 3rem; 
+            padding-top: 60px; 
+        }
+
+        /* --- NAVBAR OVERRIDES (Compact Version) --- */
+        .navbar-wrapper {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-compact {
+            height: 60px !important;
+            min-height: 60px !important;
+            background: rgba(2, 6, 23, 0.9) !important;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar-compact .brand-logo { width: 32px; height: 32px; font-size: 1.1rem; }
+        .navbar-compact .nav-link { font-size: 0.85rem; }
+
+        /* Back Button Style */
+        .nav-back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            color: #94a3b8;
+            transition: all 0.2s;
+            margin-right: 12px;
+            border: 1px solid transparent;
+        }
+        .nav-back-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- LOGIN CONTAINER --- */
+        .login-container {
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page-icon { font-size: 2.5rem; color: #14b8a6; margin-bottom: 0.5rem; display: inline-block; }
+        .page-header h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff; }
+        .page-header p { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
+
+        /* --- CARD --- */
+        .login-card {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+            text-align: left;
+        }
+
+        .card-inner-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #14b8a6;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- FORM ELEMENTS --- */
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 500; color: #e2e8f0; }
+
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-icon { position: absolute; left: 12px; color: #64748b; font-size: 1rem; pointer-events: none; }
+
+        .custom-input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .custom-input:focus { border-color: #14b8a6; box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.15); }
+
+        .password-toggle {
+            position: absolute; right: 12px; color: #64748b; cursor: pointer; transition: color 0.2s; font-size: 1rem;
+        }
+        .password-toggle:hover { color: #fff; }
+
+        .btn-full { width: 100%; padding: 0.75rem; font-size: 0.9rem; margin-top: 0.5rem; cursor: pointer; }
+
+        /* Error Message Style */
+        .error-msg {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none; /* Hidden by default */
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* --- FOOTER / DEMO --- */
+        .demo-box {
+            margin-top: 1.25rem;
+            background: rgba(2, 6, 23, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 0.6rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .demo-badge { color: #14b8a6; font-weight: 600; background: rgba(20, 184, 166, 0.1); padding: 1px 6px; border-radius: 4px; }
+        
+        .footer-link { margin-top: 1.5rem; font-size: 0.85rem; color: #94a3b8; }
