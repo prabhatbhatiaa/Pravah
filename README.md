@@ -2,7 +2,7 @@
 
 > Data Driven Real-Time Delhi Flood Risk Monitoring & Management System
 
-<img width="1349" height="626" alt="image" src="https://github.com/user-attachments/assets/f6bb9d98-b52b-40a3-8a38-c3e05182dddc" />
+<img width="1351" height="682" alt="image" src="https://github.com/user-attachments/assets/5bf755f7-76d8-4b7b-8b7d-ed249a3f7dc1" />
 
 **Live Demo:** https://pravah-proj.vercel.app/
 
@@ -18,6 +18,7 @@ It integrates rainfall data, drainage capacity, and citizen complaints to genera
 1. *Citizen Portal:* Submit geo-tagged waterlogging complaints bala 
 2. *Admin Dashboard*: Monitor KPIs, view ward-level analytics, and update infrastructure status.
 - **Professional Visualization** — Clean, government-grade UI with data-dense tables and actionable insights.
+- **Dual Themes** — Both light mode and dark mode implemented to suit all users.
 - **Simulated IoT Data** — Realistic, synchronized datasets for Rainfall and Drainage across all Delhi zones.
 
 ## 🏗️ Architecture
@@ -86,6 +87,7 @@ Pravah/
 │   ├── admin.html              # Main Admin Control Room
 │   ├── dashboard.html          # Citizen Reporting Page
 │   └── login.html              # Admin Login Gate
+│   └── about.html              # About The Project
 │
 └── README.md
 ```
@@ -131,8 +133,9 @@ uvicorn src.main:app --reload
 ## 🔐 System Access
 
 1. **Landing Page** — : Public access to project overview.
-2. **Citizen Dashboard** — Public access to view map & report issues.
-3. **Admin Portal** — : Restricted access via Session Storage.
+2. **About Us Page** — : Public accessto the details of the project.
+3. **Citizen Dashboard** — Public access to view map & report issues.
+4. **Admin Portal** — : Restricted access via Session Storage.
 
 ## 📋 API Endpoints
 
