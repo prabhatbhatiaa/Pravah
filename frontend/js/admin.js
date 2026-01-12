@@ -9,7 +9,7 @@ if (!sessionStorage.getItem('isLoggedIn')) {
 // 1. CONFIGURATION
 // =====================
 // Check if API_BASE is already defined, otherwise define it
-const BASE_URL = (typeof API_BASE !== 'undefined') ? API_BASE : "http://localhost:8000";
+const BASE_URL = (typeof API_BASE !== 'undefined') ? API_BASE : ""https://pravah-br0g.onrender.com/";
 const DELHI_BOUNDS = [[28.40, 76.80], [28.90, 77.35]];
 const DELHI_CENTER = [28.6139, 77.2090];
 
@@ -517,4 +517,5 @@ window.logout = function() {
   sessionStorage.removeItem('isLoggedIn');
   showToast('Logged Out', 'You have been logged out successfully', 'success');
   setTimeout(() => window.location.href = 'login.html', 1000);
+
 }
