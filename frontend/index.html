@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pravah | Water Risk Monitoring System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.1) 50%, 
+                rgba(255,255,255,0) 100%);
+            margin: 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="brand-group">
+                <div class="brand-logo">
+                    <i class="ri-drop-fill"></i>
+                </div>
+                <div class="brand-text">
+                    <div class="main-title">Pravah</div>
+                    <div class="sub-title">Water Logging Risk Monitoring System</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <button class="btn-ghost" onclick="ThemeSystem.toggle()" style="margin-right: 1rem;" aria-label="Toggle Theme">
+                    <i class="ri-sun-line" id="theme-icon" style="font-size: 1.2rem;"></i>
+                </button>
+
+                <a href="login.html" class="nav-link">
+                    <i class="ri-lock-line"></i> Admin Portal
+                </a>
+                <a href="" class="nav-link">
+                    <i class="ri-phone-line"></i> Contact Us
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="badge-pill">
+            <i class="ri-government-fill"></i> Developed for HackXDelhi 2026
+        </div>
+        
+        <h1><span class="text-gradient">Pravah</span><br></h1>
+        <h2>Water Logging Risk System</h2>
+        
+        <p>
+            Real-time monitoring and prediction of water logging risks across all 250 wards. 
+            Report incidents, track drainage status, and stay informed during monsoon season.
+        </p>
+        
+        <div class="btn-group">
+            <a href="dashboard.html" class="btn btn-primary">
+                View Risk Dashboard <i class="ri-arrow-right-line" style="margin-left: 8px;"></i>
+            </a>
+            <a href="about.html" class="btn btn-outline">
+                <i class="ri-file-paper-fill" style="margin-right: 8px;"></i> About Us
+            </a>
+        </div>
+    </main>
+
+    <div class="section-divider"></div>
+
+    <section class="features-section">
+        <div class="section-header">
+            <h2>Comprehensive Flood Risk Management</h2>
+            <p class="text-muted">Powered by real time data analytics and citizen reporting</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-box icon-cyan"><i class="ri-map-pin-2-fill"></i></div>
+                <h3>Ward Level Mapping</h3>
+                <p>Interactive map with color coded risk levels for all 250 wards in Delhi. Click any ward for detailed information.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box icon-red"><i class="ri-alarm-warning-fill"></i></div>
+                <h3>Risk Prediction</h3>
+                <p>Risk Factor calculated based on weather data, drainage capacity, and historical patterns.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box icon-green"><i class="ri-bar-chart-box-fill"></i></div>
+                <h3>Citizen Reporting</h3>
+                <p>Submit water logging complaints directly. Help authorities prioritize areas needing immediate attention.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3 style="color: #2dd4bf;">250</h3>
+                <div class="stat-label">Wards Monitored</div>
+            </div>
+            <div class="stat-item">
+                <h3 style="color: #f87171;">2</h3>
+                <div class="stat-label">High Risk Areas</div>
+            </div>
+            <div class="stat-item">
+                <h3 style="color: #fff;">24/7</h3>
+                <div class="stat-label">Real-time Updates</div>
+            </div>
+            <div class="stat-item">
+                <h3 style="color: #4ade80;">3min</h3>
+                <div class="stat-label">Data Refresh</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <footer class="main-footer">
+        Developed by 
+        <a href="https://github.com/prabhatbhatiaa" style="text-decoration-line: underline;">Prabhat Bhatia</a> 
+        & <a href="https://github.com/suhaniyadav-netizen" style="text-decoration-line: underline;">Suhani Yadav</a>
+    </footer>
+
+    <script src="js/common.js"></script>
+
+</body>
+</html>

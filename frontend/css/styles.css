@@ -1,0 +1,541 @@
+/* =========================================
+   1. CORE VARIABLES & THEME SETUP
+   ========================================= */
+:root {
+    /* --- DEFAULT (DARK MODE) --- */
+    --bg-dark: #020617;
+    --bg-card: #0f172a;
+    --bg-card-hover: #1e293b;
+
+    --primary: #14b8a6;
+    --primary-gradient: linear-gradient(135deg, #2dd4bf 0%, #0ea5e9 100%);
+
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: rgba(255, 255, 255, 0.08);
+    
+    --navbar-bg: rgba(2, 6, 23, 0.85);
+    --input-bg: #020617;
+    --card-shadow: none; /* No shadow needed in dark mode */
+
+    --nav-height: 80px;
+
+    /* 🆕 GRID COLOR (Dark Mode) - Very subtle */
+    --grid-color: rgba(255, 255, 255, 0.03); 
+}
+
+/* --- LIGHT MODE OVERRIDES --- */
+body.light-mode {
+    /* 1. Background is Off-White, Cards are Pure White */
+    --bg-dark: #f1f5f9;       /* Slate-100 */
+    --bg-card: #ffffff;       /* White */
+    --bg-card-hover: #f8fafc; /* Slate-50 */
+
+    /* 2. High Contrast Text */
+    --text-main: #0f172a;     /* Slate-900 */
+    --text-muted: #64748b;    /* Slate-500 */
+    
+    /* 3. Stronger Borders & Inputs */
+    --border: rgba(148, 163, 184, 0.4); 
+    --navbar-bg: rgba(255, 255, 255, 0.90);
+    --input-bg: #ffffff;
+    
+    /* 4. Essential Shadow for Light Mode Depth */
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    /* 🆕 GRID COLOR (Light Mode) - Subtle slate */
+    --grid-color: rgba(0, 0, 0, 0.04);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- LEAFLET MAP FIXES --- */
+.leaflet-tile-pane img,
+.leaflet-shadow-pane img,
+.leaflet-image-layer,
+.leaflet-tile {
+    box-sizing: content-box !important;
+    max-width: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Light Mode Map Popup Fix */
+body.light-mode .dark-popup .leaflet-popup-content-wrapper,
+body.light-mode .dark-popup .leaflet-popup-tip {
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #cbd5e1;
+}
+
+/* =========================================
+   2. GENERAL LAYOUT & BACKGROUND GRID
+   ========================================= */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    /* 🆕 THE GRID PATTERN */
+    /* Creates a 50px x 50px grid using linear gradients */
+    background-image: 
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* 🆕 THE FADE VIGNETTE */
+/* Fades the grid out at the edges for a professional look */
+body::before {
+    content: '';
+    position: fixed; /* Fixed ensures it stays put when scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+
+    /* The "Spotlight" Mask: Shows grid in center, fades to solid bg at edges */
+    background: radial-gradient(circle at 50% 0%, transparent 10%, var(--bg-dark) 90%);
+    
+    /* Optional: Subtle blue accent glow at the very top */
+    box-shadow: inset 0 0 100px rgba(14, 165, 233, 0.05);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    height: var(--nav-height);
+    border-bottom: 1px solid var(--border);
+    background: var(--navbar-bg);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    background: rgba(45, 212, 191, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #2dd4bf;
+}
+
+.brand-text .main-title {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.brand-text .sub-title {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link:hover {
+    color: var(--text-main);
+}
+
+.btn-ghost {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-ghost:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--primary);
+}
+/* Fix Ghost Button Hover in Light Mode */
+body.light-mode .btn-ghost:hover {
+    background: rgba(0,0,0,0.05); 
+    color: var(--primary);
+}
+
+/* =========================================
+   3. HERO SECTION
+   ========================================= */
+.hero {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    border-radius: 99px;
+    color: #38bdf8;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #2dd4bf, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* Darker Gradient for Light Mode readability */
+body.light-mode .text-gradient {
+    background: linear-gradient(to right, #0d9488, #0284c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin-bottom: 3rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: #020617;
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(45, 212, 191, 0.5);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+}
+
+.btn-outline:hover {
+    border-color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+}
+/* Fix Outline Button in Light Mode */
+body.light-mode .btn-outline {
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+body.light-mode .btn-outline:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+/* =========================================
+   4. FEATURES
+   ========================================= */
+.features-section {
+    padding: 2rem 0 6rem;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    /* Apply shadow variable (visible in light mode only) */
+    box-shadow: var(--card-shadow); 
+}
+
+.feature-card:hover {
+    border-color: rgba(45, 212, 191, 0.3);
+    transform: translateY(-5px);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.icon-cyan { background: rgba(34, 211, 238, 0.1); color: #22d3ee; }
+.icon-red { background: rgba(248, 113, 113, 0.1); color: #f87171; }
+.icon-green { background: rgba(74, 222, 128, 0.1); color: #4ade80; }
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* =========================================
+   5. STATS BAR
+   ========================================= */
+.stats-bar {
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border);
+    padding: 4rem 2rem;
+    width: 100%;
+}
+
+/* Force Light Mode Stats Bar to White */
+body.light-mode .stats-bar {
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+}
+
+.stats-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    gap: 2rem;
+}
+
+.stat-item h3 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+/* FIX: Override inline style="color: #fff" in Light Mode */
+body.light-mode .stats-bar h3[style*="color: #fff"] {
+    color: #0f172a !important;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+.main-footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.85rem;
+    background: var(--bg-dark);
+}
+
+/* =========================================
+   7. MAP & DASHBOARD COMPONENTS
+   ========================================= */
+.ward-hotspot {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.ward-hotspot:hover {
+    filter: brightness(1.2);
+}
+
+.ward-hotspot-high { filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.6)); }
+.ward-hotspot-medium { filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.5)); }
+.ward-hotspot-low { filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.4)); }
+
+.ward-hotspot-pulse {
+    animation: pulse-ring 2s ease-out infinite;
+    transform-origin: center;
+}
+
+@keyframes pulse-ring {
+    0% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.1; }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+
+.dark-popup .leaflet-popup-content-wrapper {
+    background: var(--bg-card);
+    color: var(--text-main);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.dark-popup .leaflet-popup-tip {
+    background: var(--bg-card);
+}
+
+/* Card & Container Fixes for Dashboard/Admin */
+.card, .map-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow); /* Applies depth in Light Mode */
+}
+
+/* Inputs in Light Mode */
+body.light-mode input, 
+body.light-mode select {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+}
+
+/* =========================================
+   8. MOBILE OPTIMIZATION
+   ========================================= */
+@media (max-width: 768px) {
+    .container { padding: 0 1rem; }
+    
+    .navbar-compact .container { padding: 0 1rem; }
+    .brand-text { display: none; }
+    @media (min-width: 400px) { .brand-text { display: block; } }
+
+    .main-grid { grid-template-columns: 1fr !important; gap: 1.5rem; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem; }
+    .map-container { height: 300px; }
+    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .priority-item { padding: 0.75rem; }
+
+    .dashboard-container { grid-template-columns: 1fr !important; height: auto !important; padding: 1rem !important; }
+    .map-wrapper { height: 45vh !important; min-height: 300px; }
+    .sidebar { width: 100%; padding-right: 0; overflow-y: visible; }
+
+    input, select, button, .btn, .btn-hero { min-height: 48px; font-size: 16px; }
+    input[type=range]::-webkit-slider-thumb { height: 24px; width: 24px; }
+
+    h1 { font-size: 1.5rem !important; }
+    h2 { font-size: 1.25rem !important; }
+    h3 { font-size: 1.1rem !important; }
+    p, span, div { font-size: 0.95rem; }
+}

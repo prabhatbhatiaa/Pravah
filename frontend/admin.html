@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pravah | Admin Dashboard</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <script>
+    // Security Gatekeeper
+    if (!sessionStorage.getItem('isLoggedIn')) {
+        window.location.replace("login.html");
+    }
+  </script>
+</head>
+<body>
+
+  <nav class="navbar">
+      <div class="container nav-content">
+          <div class="brand-group">
+              <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 12px; color: inherit;">
+                  <div class="brand-logo">
+                      <i class="ri-drop-fill"></i>
+                  </div>
+                  <div class="brand-text">
+                      <div class="main-title">Pravah</div>
+                      <div class="sub-title">Admin Control Room</div>
+                  </div>
+              </a>
+          </div>
+          <div class="nav-links">
+              <button class="btn-ghost" onclick="ThemeSystem.toggle()" style="margin-right: 0.5rem;" aria-label="Toggle Theme">
+                  <i class="ri-sun-line" id="theme-icon" style="font-size: 1.2rem;"></i>
+              </button>
+
+              <button class="btn btn-hero" onclick="openComplaintsModal()" style="margin-right: 1rem; font-size: 0.85rem;">
+                  <i class="ri-file-list-3-line"></i> View Complaints
+              </button>
+
+              <a href="index.html" class="nav-link">
+                  <i class="ri-home-line"></i> Home
+              </a>
+              
+              <button onclick="logout()" class="nav-link" style="background: none; border: none; cursor: pointer; font-family: inherit;">
+                  <i class="ri-logout-box-line"></i> Logout
+              </button>
+          </div>
+      </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      
+      <div class="page-title">
+        <div class="page-title-label">
+          <i data-lucide="layout-dashboard" style="width: 16px; height: 16px;"></i>
+          <span>Control Room</span>
+        </div>
+        <h1>Admin Dashboard</h1>
+        <p>Manage drainage status and monitor priority areas</p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="card kpi-card border-risk-high">
+          <div class="kpi-header">
+            <div class="kpi-icon risk-high">
+              <i data-lucide="alert-triangle" style="width: 20px; height: 20px;"></i>
+            </div>
+          </div>
+          <div class="kpi-body">
+            <p class="kpi-title">High Risk Wards</p>
+            <p class="kpi-value risk-high" id="kpi-high-risk">--</p>
+            <p class="kpi-subtitle">Require attention</p>
+          </div>
+        </div>
+
+        <div class="card kpi-card">
+          <div class="kpi-header">
+            <div class="kpi-icon primary">
+              <i data-lucide="file-warning" style="width: 20px; height: 20px;"></i>
+            </div>
+          </div>
+          <div class="kpi-body">
+            <p class="kpi-title">Total Complaints</p>
+            <p class="kpi-value primary" id="kpi-total">--</p>
+            <p class="kpi-subtitle">This month</p>
+          </div>
+        </div>
+
+        <div class="card kpi-card border-risk-medium">
+          <div class="kpi-header">
+            <div class="kpi-icon risk-medium">
+              <i data-lucide="activity" style="width: 20px; height: 20px;"></i>
+            </div>
+          </div>
+          <div class="kpi-body">
+            <p class="kpi-title">Pending</p>
+            <p class="kpi-value risk-medium" id="kpi-pending">--</p>
+            <p class="kpi-subtitle">Awaiting action</p>
+          </div>
+        </div>
+
+        <div class="card kpi-card border-risk-low">
+          <div class="kpi-header">
+            <div class="kpi-icon risk-low">
+              <i data-lucide="check-circle-2" style="width: 20px; height: 20px;"></i>
+            </div>
+          </div>
+          <div class="kpi-body">
+            <p class="kpi-title">Resolved</p>
+            <p class="kpi-value risk-low" id="kpi-resolved">--</p>
+            <p class="kpi-subtitle">Complaints closed</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-section">
+        <h2 class="section-title">
+          <i data-lucide="map" style="width: 20px; height: 20px;"></i>
+          Ward Risk Visualization
+        </h2>
+        <div class="card map-container">
+          <div id="map"></div>
+          
+          <div class="map-legend">
+            <p class="map-legend-title">Risk Level</p>
+            <div class="map-legend-item">
+              <div class="map-legend-dot high"></div>
+              <span class="map-legend-label">High</span>
+            </div>
+            <div class="map-legend-item">
+              <div class="map-legend-dot medium"></div>
+              <span class="map-legend-label">Medium</span>
+            </div>
+            <div class="map-legend-item">
+              <div class="map-legend-dot low"></div>
+              <span class="map-legend-label">Low</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-grid">
+        
+        <div class="left-column">
+          <div class="card">
+            <div class="card-header">
+                <div class="card-header-row">
+                    <div class="card-icon primary"><i data-lucide="activity" style="width: 20px; height: 20px;"></i></div>
+                    <h3 class="card-title">All Wards Status</h3>
+                </div>
+            </div>
+            
+            <div class="table-wrapper">
+              <table id="ward-table">
+                <thead>
+                  <tr>
+                    <th style="width: 48px;">#</th>
+                    <th><button class="sort-btn" onclick="sortTable('name')">Ward Name <i data-lucide="arrow-up-down" style="width: 12px; height: 12px;"></i></button></th>
+                    <th>Zone</th>
+                    <th><button class="sort-btn" onclick="sortTable('riskScore')">Risk Score <i data-lucide="arrow-up-down" style="width: 12px; height: 12px;"></i></button></th>
+                    <th>Risk Level</th>
+                    <th><button class="sort-btn" onclick="sortTable('drainageCapacity')">Drainage <i data-lucide="arrow-up-down" style="width: 12px; height: 12px;"></i></button></th>
+                  </tr>
+                </thead>
+                <tbody id="ward-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card ward-details hidden" id="ward-details">
+            <div class="ward-details-header">
+              <div class="ward-details-title">
+                <div class="ward-details-icon" id="ward-icon">
+                  <i data-lucide="map-pin" style="width: 20px; height: 20px;"></i>
+                </div>
+                <div>
+                  <h3 id="ward-name">Ward Name</h3>
+                  <p class="ward-details-zone" id="ward-zone">Zone</p>
+                </div>
+              </div>
+              <button class="close-btn" onclick="closeWardDetails()">
+                <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+              </button>
+            </div>
+
+            <div class="ward-risk-badge" id="ward-risk-badge">
+              <i data-lucide="alert-triangle" style="width: 14px; height: 14px;"></i>
+              <span id="ward-risk-label">HIGH RISK</span>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-box">
+                <div class="stat-label">
+                  <i data-lucide="activity" style="width: 16px; height: 16px;"></i>
+                  <span>Risk Score</span>
+                </div>
+                <p class="stat-value" id="ward-risk-score">--%</p>
+              </div>
+              <div class="stat-box">
+                <div class="stat-label">
+                  <i data-lucide="droplets" style="width: 16px; height: 16px;"></i>
+                  <span>Drainage</span>
+                </div>
+                <p class="stat-value primary" id="ward-drainage">--%</p>
+              </div>
+            </div>
+
+            <div class="ward-progress">
+              <div class="ward-progress-header">
+                <span>Drainage Capacity</span>
+                <span id="ward-drainage-label">--%</span>
+              </div>
+              <div class="ward-progress-bar">
+                <div class="ward-progress-fill" id="ward-progress-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-header-row">
+                <div class="card-icon risk-high"><i data-lucide="alert-triangle" style="width: 20px; height: 20px;"></i></div>
+                <div>
+                  <h3 class="card-title">Priority Wards</h3>
+                  <p class="card-description">Highest risk areas requiring attention</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="priority-list" id="priority-list"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-header-row">
+                <div class="card-icon primary"><i data-lucide="wrench" style="width: 20px; height: 20px;"></i></div>
+                <div>
+                  <h3 class="card-title">Update Drainage</h3>
+                  <p class="card-description">Update ward drainage status</p>
+                </div>
+              </div>
+            </div>
+            <div class="card-content">
+              <form id="drainage-form" onsubmit="handleDrainageSubmit(event)">
+                <div class="form-group">
+                  <label for="ward-select">Select Ward</label>
+                  <select id="ward-select" required>
+                    <option value="">Choose a ward</option>
+                  </select>
+                </div>
+
+                <div class="slider-container">
+                  <div class="slider-header">
+                    <label for="drainage-slider">Drainage Capacity</label>
+                    <span class="slider-value" id="drainage-value">50%</span>
+                  </div>
+                  <input type="range" id="drainage-slider" min="0" max="100" step="5" value="50" oninput="updateSliderValue(this.value)">
+                  <div class="slider-labels">
+                    <span>Critical</span>
+                    <span>Optimal</span>
+                  </div>
+                </div>
+
+                <div class="switch-container">
+                  <div class="switch-label">
+                    <i data-lucide="check-circle-2" style="width: 20px; height: 20px;"></i>
+                    <div class="switch-text">
+                      <p>Mark Drain as Cleaned</p>
+                      <span>Update maintenance status</span>
+                    </div>
+                  </div>
+                  <div class="switch" id="clean-switch" onclick="toggleSwitch()">
+                    <div class="switch-thumb"></div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-hero" id="submit-btn" style="width: 100%;">
+                  <i data-lucide="wrench" style="width: 16px; height: 16px;"></i> Update Drainage Status
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="complaintsModal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 style="display:flex; align-items:center; gap:8px;">
+              <i class="ri-alarm-warning-fill" style="color:var(--risk-high)"></i> Citizen Reports
+            </h3>
+            <button class="close-btn" onclick="closeComplaintsModal()">
+                <i class="ri-close-line" style="font-size:1.5rem;"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <div id="complaintsList" class="complaints-grid">
+                <div class="loading-state" style="text-align:center; padding:2rem; color:var(--text-muted);">
+                    <i class="ri-loader-4-line spin"></i> Loading reports...
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+
+</body>
+</html>
