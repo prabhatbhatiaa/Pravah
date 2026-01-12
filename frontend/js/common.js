@@ -2,7 +2,7 @@
  * COMMON CONFIGURATION
  */
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = ""https://pravah-br0g.onrender.com/";
 
 const Utils = {
     // Matches the backend's capitalized risk levels to your CSS colors
@@ -107,4 +107,5 @@ const ThemeSystem = {
 };
 
 // Initialize Theme Logic on Load
+
 document.addEventListener('DOMContentLoaded', ThemeSystem.init);
